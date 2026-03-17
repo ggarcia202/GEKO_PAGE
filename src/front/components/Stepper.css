@@ -1,0 +1,292 @@
+.outer-container {
+	display: flex;
+	width: 100%;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+}
+
+.step-circle-container {
+	width: 100%;
+	border-radius: 2rem;
+	background: linear-gradient(180deg, rgba(255, 255, 255, 0.92) 0%, rgba(248, 243, 255, 0.9) 100%);
+	border: 1px solid rgba(111, 44, 143, 0.12);
+	box-shadow: 0 28px 60px rgba(47, 18, 76, 0.08);
+}
+
+.step-indicator-row {
+	display: flex;
+	width: 100%;
+	align-items: center;
+	padding: 2rem 2rem 1.4rem;
+}
+
+.step-content-default {
+	position: relative;
+	overflow: hidden;
+}
+
+.step-content-animate {
+	animation: stepFade 0.35s ease;
+}
+
+.step-default {
+	padding-inline: 2rem;
+	padding-bottom: 0.5rem;
+}
+
+.footer-container {
+	padding-inline: 2rem;
+	padding-bottom: 2rem;
+}
+
+.footer-nav {
+	margin-top: 2rem;
+	display: flex;
+}
+
+.footer-nav.spread {
+	justify-content: space-between;
+}
+
+.footer-nav.end {
+	justify-content: flex-end;
+}
+
+.back-button {
+	transition: all 0.35s ease;
+	border-radius: 999px;
+	padding: 0.65rem 1rem;
+	color: #7a7292;
+	cursor: pointer;
+	border: 1px solid rgba(111, 44, 143, 0.14);
+	background: rgba(255, 255, 255, 0.8);
+}
+
+.back-button:hover {
+	color: #4a3f63;
+}
+
+.back-button.inactive {
+	pointer-events: none;
+	opacity: 0.5;
+}
+
+.next-button {
+	transition: all 0.35s ease;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	border-radius: 999px;
+	background: linear-gradient(135deg, #6f2c8f 0%, #8f6dff 100%);
+	color: #fff;
+	font-weight: 600;
+	letter-spacing: -0.02em;
+	padding: 0.75rem 1.2rem;
+	cursor: pointer;
+	border: 0;
+}
+
+.next-button:hover {
+	transform: translateY(-1px);
+}
+
+.step-indicator {
+	position: relative;
+	cursor: pointer;
+	outline: none;
+}
+
+.step-indicator-inner {
+	display: flex;
+	height: 2.25rem;
+	width: 2.25rem;
+	align-items: center;
+	justify-content: center;
+	border-radius: 999px;
+	font-weight: 600;
+	transition: all 0.3s ease;
+}
+
+.step-indicator-inner.inactive {
+	background-color: #ede8f6;
+	color: #7f7894;
+}
+
+.step-indicator-inner.active {
+	background-color: #6f2c8f;
+	color: #fff;
+	box-shadow: 0 10px 24px rgba(111, 44, 143, 0.2);
+}
+
+.step-indicator-inner.complete {
+	background-color: #6f2c8f;
+	color: #fff;
+}
+
+.active-dot {
+	height: 0.75rem;
+	width: 0.75rem;
+	border-radius: 999px;
+	background-color: #fff;
+}
+
+.step-number {
+	font-size: 0.875rem;
+}
+
+.step-connector {
+	position: relative;
+	margin-inline: 0.75rem;
+	height: 0.125rem;
+	flex: 1;
+	overflow: hidden;
+	border-radius: 0.25rem;
+	background-color: #d9d1ea;
+}
+
+.step-connector-inner {
+	position: absolute;
+	left: 0;
+	top: 0;
+	height: 100%;
+	transition: width 0.35s ease, background 0.35s ease;
+}
+
+.step-connector-inner.incomplete {
+	width: 0;
+	background-color: transparent;
+}
+
+.step-connector-inner.complete {
+	width: 100%;
+	background: linear-gradient(90deg, #6f2c8f 0%, #8f6dff 100%);
+}
+
+.check-icon {
+	height: 1rem;
+	width: 1rem;
+	color: #fff;
+}
+
+.geko-service-step {
+	display: grid;
+	gap: 1.5rem;
+}
+
+.geko-service-step__eyebrow {
+	display: inline-flex;
+	width: fit-content;
+	align-items: center;
+	padding: 0.45rem 0.8rem;
+	border-radius: 999px;
+	background: rgba(111, 44, 143, 0.08);
+	color: #6f2c8f;
+	font-size: 0.76rem;
+	font-weight: 700;
+	letter-spacing: 0.14em;
+	text-transform: uppercase;
+}
+
+.geko-service-step__title {
+	font-family: Georgia, "Times New Roman", serif;
+	font-size: clamp(1.8rem, 3vw, 2.5rem);
+	line-height: 0.98;
+	letter-spacing: -0.04em;
+	color: #24173d;
+}
+
+.geko-service-step__description {
+	color: #675d7f;
+	line-height: 1.85;
+	font-size: 1rem;
+	max-width: 42rem;
+}
+
+.geko-service-step__grid {
+	display: grid;
+	grid-template-columns: 1.4fr 0.9fr;
+	gap: 1rem;
+}
+
+.geko-service-step__panel {
+	border-radius: 1.5rem;
+	padding: 1.25rem;
+	border: 1px solid rgba(111, 44, 143, 0.1);
+	background: rgba(255, 255, 255, 0.76);
+}
+
+.geko-service-step__panel h4 {
+	margin-bottom: 0.8rem;
+	font-size: 0.82rem;
+	text-transform: uppercase;
+	letter-spacing: 0.16em;
+	color: #6f2c8f;
+}
+
+.geko-service-step__list {
+	display: grid;
+	gap: 0.8rem;
+	padding-left: 0;
+	margin: 0;
+	list-style: none;
+}
+
+.geko-service-step__list li {
+	position: relative;
+	padding-left: 1.2rem;
+	color: #4f4567;
+	line-height: 1.65;
+}
+
+.geko-service-step__list li::before {
+	content: "";
+	position: absolute;
+	left: 0;
+	top: 0.58rem;
+	width: 0.45rem;
+	height: 0.45rem;
+	border-radius: 999px;
+	background: linear-gradient(135deg, #ff7a00 0%, #6f2c8f 100%);
+}
+
+.geko-service-step__metric {
+	display: grid;
+	gap: 0.6rem;
+}
+
+.geko-service-step__metric-value {
+	font-family: Georgia, "Times New Roman", serif;
+	font-size: 3rem;
+	line-height: 0.9;
+	letter-spacing: -0.05em;
+	color: #6f2c8f;
+}
+
+.geko-service-step__metric-copy {
+	color: #675d7f;
+	line-height: 1.7;
+}
+
+@keyframes stepFade {
+	from {
+		opacity: 0;
+		transform: translateY(10px);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+@media (max-width: 767px) {
+	.step-indicator-row,
+	.step-default,
+	.footer-container {
+		padding-inline: 1.2rem;
+	}
+
+	.geko-service-step__grid {
+		grid-template-columns: 1fr;
+	}
+}

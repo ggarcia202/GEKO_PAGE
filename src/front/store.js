@@ -1,6 +1,7 @@
 export const initialStore=()=>{
   return{
     message: null,
+    language: "es",
     todos: [
       {
         id: 1,
@@ -31,6 +32,11 @@ export default function storeReducer(store, action = {}) {
       return {
         ...store,
         todos: store.todos.map((todo) => (todo.id === id ? { ...todo, background: color } : todo))
+      };
+    case "set_language":
+      return {
+        ...store,
+        language: action.payload
       };
     default:
       throw Error('Unknown action.');
