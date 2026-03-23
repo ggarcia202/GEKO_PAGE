@@ -1,12 +1,17 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faMoon, faSun } from "@fortawesome/free-solid-svg-icons";
 import useGlobalReducer from "../hooks/useGlobalReducer";
 import { languageOptions, translations } from "../i18n";
 
 export const Navbar = () => {
 	const [isLanguageOpen, setIsLanguageOpen] = useState(false);
+	const location = useLocation();
+	const navigate = useNavigate();
 	const { store, dispatch } = useGlobalReducer();
 	const currentLanguage = store.language || "es";
+	const currentTheme = store.theme || "light";
 	const copy = translations[currentLanguage].navbar;
 	const currentOption =
 		languageOptions.find((option) => option.code === currentLanguage) || languageOptions[0];
@@ -14,6 +19,19 @@ export const Navbar = () => {
 	const handleLanguageChange = (languageCode) => {
 		dispatch({ type: "set_language", payload: languageCode });
 		setIsLanguageOpen(false);
+	};
+
+	const handleThemeToggle = () => {
+		dispatch({ type: "set_theme", payload: currentTheme === "dark" ? "light" : "dark" });
+	};
+
+	const handleContactClick = () => {
+		if (location.pathname === "/") {
+			document.getElementById("contact")?.scrollIntoView({ behavior: "smooth", block: "start" });
+			return;
+		}
+
+		navigate("/#contact");
 	};
 
 	return (
@@ -32,20 +50,38 @@ export const Navbar = () => {
 						{copy.about}
 					</Link>
 
-					<button type="button" className="btn geko-pill-button geko-pill-button--primary">
+					<button
+						type="button"
+						className="btn geko-pill-button geko-pill-button--primary"
+						onClick={handleContactClick}
+					>
 						{copy.contact}
 					</button>
 
 					<div className="position-relative">
-						<button
-							type="button"
-							className="btn geko-pill-button geko-language-button"
-							onClick={() => setIsLanguageOpen((value) => !value)}
-							aria-haspopup="true"
-							aria-expanded={isLanguageOpen}
-						>
-							{currentOption.shortLabel}
-						</button>
+						<div className="d-flex align-items-center gap-2">
+							<button
+								type="button"
+								className="btn geko-pill-button geko-theme-toggle"
+								onClick={handleThemeToggle}
+								aria-label={currentTheme === "dark" ? copy.lightMode : copy.darkMode}
+								title={currentTheme === "dark" ? copy.lightMode : copy.darkMode}
+							>
+								<span className="geko-theme-toggle__icon" aria-hidden="true">
+									<FontAwesomeIcon icon={currentTheme === "dark" ? faSun : faMoon} />
+								</span>
+							</button>
+							<button
+								type="button"
+								className="btn geko-pill-button geko-language-button"
+								onClick={() => setIsLanguageOpen((value) => !value)}
+								aria-haspopup="true"
+								aria-expanded={isLanguageOpen}
+								aria-label={copy.language}
+							>
+								{currentOption.shortLabel}
+							</button>
+						</div>
 
 						{isLanguageOpen && (
 							<div className="position-absolute end-0 mt-2 rounded-4 p-2 geko-language-menu">

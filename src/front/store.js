@@ -1,7 +1,13 @@
+const getInitialTheme = () => {
+  if (typeof window === "undefined") return "light";
+  return window.localStorage.getItem("geko-theme") || "light";
+}
+
 export const initialStore=()=>{
   return{
     message: null,
     language: "es",
+    theme: getInitialTheme(),
     todos: [
       {
         id: 1,
@@ -37,6 +43,14 @@ export default function storeReducer(store, action = {}) {
       return {
         ...store,
         language: action.payload
+      };
+    case "set_theme":
+      if (typeof window !== "undefined") {
+        window.localStorage.setItem("geko-theme", action.payload);
+      }
+      return {
+        ...store,
+        theme: action.payload
       };
     default:
       throw Error('Unknown action.');

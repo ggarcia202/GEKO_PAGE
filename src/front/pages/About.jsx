@@ -22,13 +22,13 @@ export const About = () => {
 
 						<div className="col-12 col-lg-5">
 							<div className="geko-dark-card h-100">
-								<div className="geko-chip mb-3" style={{ background: "rgba(255,255,255,0.1)", color: "#ffd8b4" }}>
+								<div className="geko-chip mb-3" style={{ background: "var(--geko-dark-chip-bg)", color: "var(--geko-dark-chip-text)" }}>
 									{copy.visionLabel}
 								</div>
-								<h2 className="geko-subtitle mb-3" style={{ color: "#ffffff", fontSize: "2.2rem" }}>
+								<h2 className="geko-subtitle mb-3" style={{ color: "var(--geko-dark-title)", fontSize: "2.2rem" }}>
 									{copy.visionTitle}
 								</h2>
-								<p className="mb-0" style={{ color: "#ddd3f0", lineHeight: "1.8" }}>
+								<p className="mb-0" style={{ color: "var(--geko-dark-copy)", lineHeight: "1.8" }}>
 									{copy.visionDescription}
 								</p>
 							</div>
@@ -58,24 +58,24 @@ export const About = () => {
 								<div className="geko-metric-grid mb-3">
 									<div className="geko-metric">
 										<div className="geko-metric-value">360</div>
-										<p className="mb-0 small" style={{ color: "#5f5575" }}>
+										<p className="mb-0 small" style={{ color: "var(--geko-metric-copy-color)" }}>
 											{copy.fullVision}
 										</p>
 									</div>
 									<div className="geko-metric">
-										<div className="geko-metric-value" style={{ color: "#ff7a00" }}>
+										<div className="geko-metric-value" style={{ color: "var(--geko-accent-strong)" }}>
 											1
 										</div>
-										<p className="mb-0 small" style={{ color: "#5f5575" }}>
+										<p className="mb-0 small" style={{ color: "var(--geko-metric-copy-color)" }}>
 											{copy.consistentLanguage}
 										</p>
 									</div>
 								</div>
 								<div className="geko-dark-card" style={{ boxShadow: "none" }}>
-									<div className="geko-chip mb-3" style={{ background: "rgba(255,255,255,0.1)", color: "#ffd8b4" }}>
+									<div className="geko-chip mb-3" style={{ background: "var(--geko-dark-chip-bg)", color: "var(--geko-dark-chip-text)" }}>
 										{copy.approachLabel}
 									</div>
-									<p className="mb-0" style={{ color: "#ddd3f0", lineHeight: "1.8" }}>
+									<p className="mb-0" style={{ color: "var(--geko-dark-copy)", lineHeight: "1.8" }}>
 										{copy.approachDescription}
 									</p>
 								</div>
@@ -103,7 +103,7 @@ export const About = () => {
 								<div className={`geko-grid-card ${index === 1 ? "is-warm" : "is-cool"}`}>
 									<div
 										className="geko-index-badge"
-										style={{ background: index === 1 ? "linear-gradient(135deg, #ff8e2b 0%, #ff7a00 100%)" : "linear-gradient(135deg, #5b2ca0 0%, #8d6bff 100%)" }}
+										style={{ background: index === 1 ? "var(--geko-badge-warm)" : "var(--geko-badge-cool)" }}
 									>
 										0{index + 1}
 									</div>
@@ -123,13 +123,13 @@ export const About = () => {
 			<section className="geko-section">
 				<div className="container">
 					<div className="geko-dark-card text-center">
-						<div className="geko-chip mb-3 mx-auto" style={{ width: "fit-content", background: "rgba(255,255,255,0.1)", color: "#ffd8b4" }}>
+						<div className="geko-chip mb-3 mx-auto" style={{ width: "fit-content", background: "var(--geko-dark-chip-bg)", color: "var(--geko-dark-chip-text)" }}>
 							{copy.talkLabel}
 						</div>
-						<h2 className="geko-subtitle mb-3" style={{ color: "#ffffff", maxWidth: "15ch", marginInline: "auto" }}>
+						<h2 className="geko-subtitle mb-3" style={{ color: "var(--geko-dark-title)", maxWidth: "15ch", marginInline: "auto" }}>
 							{copy.talkTitle}
 						</h2>
-						<p className="mb-4 mx-auto" style={{ maxWidth: "42rem", color: "#e5dbf7", lineHeight: "1.8" }}>
+						<p className="mb-4 mx-auto" style={{ maxWidth: "42rem", color: "var(--geko-dark-copy-soft)", lineHeight: "1.8" }}>
 							{copy.talkDescription}
 						</p>
 						<div className="d-flex justify-content-center">

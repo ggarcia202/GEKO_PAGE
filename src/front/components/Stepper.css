@@ -9,9 +9,9 @@
 .step-circle-container {
 	width: 100%;
 	border-radius: 2rem;
-	background: linear-gradient(180deg, rgba(255, 255, 255, 0.92) 0%, rgba(248, 243, 255, 0.9) 100%);
-	border: 1px solid rgba(111, 44, 143, 0.12);
-	box-shadow: 0 28px 60px rgba(47, 18, 76, 0.08);
+	background: var(--geko-stepper-bg);
+	border: 1px solid var(--geko-stepper-border);
+	box-shadow: var(--geko-stepper-shadow);
 }
 
 .step-indicator-row {
@@ -57,14 +57,14 @@
 	transition: all 0.35s ease;
 	border-radius: 999px;
 	padding: 0.65rem 1rem;
-	color: #7a7292;
+	color: var(--geko-stepper-back-text);
 	cursor: pointer;
-	border: 1px solid rgba(111, 44, 143, 0.14);
-	background: rgba(255, 255, 255, 0.8);
+	border: 1px solid var(--geko-stepper-back-border);
+	background: var(--geko-stepper-back-bg);
 }
 
 .back-button:hover {
-	color: #4a3f63;
+	color: var(--geko-stepper-back-hover);
 }
 
 .back-button.inactive {
@@ -109,8 +109,8 @@
 }
 
 .step-indicator-inner.inactive {
-	background-color: #ede8f6;
-	color: #7f7894;
+	background-color: var(--geko-stepper-indicator-inactive-bg);
+	color: var(--geko-stepper-indicator-inactive-text);
 }
 
 .step-indicator-inner.active {
@@ -142,7 +142,7 @@
 	flex: 1;
 	overflow: hidden;
 	border-radius: 0.25rem;
-	background-color: #d9d1ea;
+	background-color: var(--geko-stepper-connector-bg);
 }
 
 .step-connector-inner {
@@ -180,7 +180,7 @@
 	align-items: center;
 	padding: 0.45rem 0.8rem;
 	border-radius: 999px;
-	background: rgba(111, 44, 143, 0.08);
+	background: var(--geko-stepper-eyebrow-bg);
 	color: #6f2c8f;
 	font-size: 0.76rem;
 	font-weight: 700;
@@ -193,11 +193,11 @@
 	font-size: clamp(1.8rem, 3vw, 2.5rem);
 	line-height: 0.98;
 	letter-spacing: -0.04em;
-	color: #24173d;
+	color: var(--geko-text);
 }
 
 .geko-service-step__description {
-	color: #675d7f;
+	color: var(--geko-muted);
 	line-height: 1.85;
 	font-size: 1rem;
 	max-width: 42rem;
@@ -212,8 +212,8 @@
 .geko-service-step__panel {
 	border-radius: 1.5rem;
 	padding: 1.25rem;
-	border: 1px solid rgba(111, 44, 143, 0.1);
-	background: rgba(255, 255, 255, 0.76);
+	border: 1px solid var(--geko-stepper-panel-border);
+	background: var(--geko-stepper-panel-bg);
 }
 
 .geko-service-step__panel h4 {
@@ -235,7 +235,7 @@
 .geko-service-step__list li {
 	position: relative;
 	padding-left: 1.2rem;
-	color: #4f4567;
+	color: var(--geko-stepper-list-text);
 	line-height: 1.65;
 }
 
@@ -264,7 +264,7 @@
 }
 
 .geko-service-step__metric-copy {
-	color: #675d7f;
+	color: var(--geko-muted);
 	line-height: 1.7;
 }
 

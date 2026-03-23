@@ -1,6 +1,8 @@
 import useGlobalReducer from "../hooks/useGlobalReducer";
 import { translations } from "../i18n";
 import Stepper, { Step } from "../components/Stepper";
+import { useEffect } from "react";
+import { useLocation } from "react-router-dom";
 
 const serviceStepContent = {
 	es: [
@@ -195,9 +197,18 @@ const serviceStepContent = {
 
 export const Home = () => {
 	const { store } = useGlobalReducer();
+	const location = useLocation();
 	const currentLanguage = store.language || "es";
 	const copy = translations[currentLanguage].home;
 	const serviceSteps = serviceStepContent[currentLanguage];
+
+	useEffect(() => {
+		if (location.hash === "#contact") {
+			window.requestAnimationFrame(() => {
+				document.getElementById("contact")?.scrollIntoView({ behavior: "smooth", block: "start" });
+			});
+		}
+	}, [location.hash]);
 
 	return (
 		<div className="page-shell">
@@ -224,27 +235,27 @@ export const Home = () => {
 
 						<div className="col-12 col-lg-5">
 							<div className="geko-dark-card">
-								<div className="geko-chip mb-3" style={{ background: "rgba(255,255,255,0.1)", color: "#ffd8b4" }}>
+								<div className="geko-chip mb-3" style={{ background: "var(--geko-dark-chip-bg)", color: "var(--geko-dark-chip-text)" }}>
 									{copy.digitalPresence}
 								</div>
-								<h2 className="geko-subtitle mb-3" style={{ color: "#ffffff" }}>
+								<h2 className="geko-subtitle mb-3" style={{ color: "var(--geko-dark-title)" }}>
 									{copy.strategyTitle}
 								</h2>
-								<p className="mb-4" style={{ color: "#ddd3f0", lineHeight: "1.8" }}>
+								<p className="mb-4" style={{ color: "var(--geko-dark-copy)", lineHeight: "1.8" }}>
 									{copy.strategyDescription}
 								</p>
 								<div className="geko-metric-grid">
 									<div className="geko-metric">
 										<div className="geko-metric-value">01</div>
-										<p className="mb-0 small" style={{ color: "#5f5575" }}>
+										<p className="mb-0 small" style={{ color: "var(--geko-metric-copy-color)" }}>
 											Brand systems with clear direction.
 										</p>
 									</div>
 									<div className="geko-metric">
-										<div className="geko-metric-value" style={{ color: "#ff7a00" }}>
+										<div className="geko-metric-value" style={{ color: "var(--geko-accent-strong)" }}>
 											02
 										</div>
-										<p className="mb-0 small" style={{ color: "#5f5575" }}>
+										<p className="mb-0 small" style={{ color: "var(--geko-metric-copy-color)" }}>
 											Content designed to attract the right audience.
 										</p>
 									</div>
@@ -302,19 +313,103 @@ export const Home = () => {
 			<section className="geko-section">
 				<div className="container">
 					<div className="geko-dark-card text-center">
-						<div className="geko-chip mb-3 mx-auto" style={{ width: "fit-content", background: "rgba(255,255,255,0.1)", color: "#ffd8b4" }}>
+						<div className="geko-chip mb-3 mx-auto" style={{ width: "fit-content", background: "var(--geko-dark-chip-bg)", color: "var(--geko-dark-chip-text)" }}>
 							{copy.startLabel}
 						</div>
-						<h2 className="geko-subtitle mb-3" style={{ color: "#ffffff", maxWidth: "14ch", marginInline: "auto" }}>
+						<h2 className="geko-subtitle mb-3" style={{ color: "var(--geko-dark-title)", maxWidth: "14ch", marginInline: "auto" }}>
 							{copy.ctaTitle}
 						</h2>
-						<p className="mb-4 mx-auto" style={{ maxWidth: "42rem", color: "#e5dbf7", lineHeight: "1.8" }}>
+						<p className="mb-4 mx-auto" style={{ maxWidth: "42rem", color: "var(--geko-dark-copy-soft)", lineHeight: "1.8" }}>
 							{copy.ctaDescription}
 						</p>
 						<div className="d-flex justify-content-center">
-							<button type="button" className="btn geko-pill-button geko-pill-button--primary">
+							<button
+								type="button"
+								className="btn geko-pill-button geko-pill-button--primary"
+								onClick={() => document.getElementById("contact")?.scrollIntoView({ behavior: "smooth", block: "start" })}
+							>
 								{copy.ctaButton}
 							</button>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<section id="contact" className="geko-section">
+				<div className="container">
+					<div className="row align-items-stretch g-4">
+						<div className="col-12 col-lg-5">
+							<div className="geko-dark-card h-100">
+								<div className="geko-chip mb-3" style={{ background: "var(--geko-dark-chip-bg)", color: "var(--geko-dark-chip-text)" }}>
+									{copy.contactLabel}
+								</div>
+								<h2 className="geko-subtitle mb-3" style={{ color: "var(--geko-dark-title)", maxWidth: "12ch" }}>
+									{copy.contactTitle}
+								</h2>
+								<p className="mb-4" style={{ color: "var(--geko-dark-copy)", lineHeight: "1.8", maxWidth: "30rem" }}>
+									{copy.contactDescription}
+								</p>
+								<div className="d-grid gap-3">
+									<div className="geko-contact-detail">
+										<span className="geko-contact-detail__label">{copy.contactEmailLabel}</span>
+										<a href="mailto:hola@gekoagency.com" className="text-decoration-none">
+											hola@gekoagency.com
+										</a>
+									</div>
+									<div className="geko-contact-detail">
+										<span className="geko-contact-detail__label">{copy.contactSocialLabel}</span>
+										<span>@gekoagency</span>
+									</div>
+									<div className="geko-contact-detail">
+										<span className="geko-contact-detail__label">{copy.contactReplyLabel}</span>
+										<span>{copy.contactReplyValue}</span>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<div className="col-12 col-lg-7">
+							<div className="geko-glass-card h-100">
+								<form className="geko-contact-form" onSubmit={(event) => event.preventDefault()}>
+									<div className="row g-3">
+										<div className="col-12 col-md-6">
+											<label className="geko-contact-form__label" htmlFor="contact-name">
+												{copy.contactFormName}
+											</label>
+											<input id="contact-name" type="text" className="form-control geko-contact-input" placeholder={copy.contactFormNamePlaceholder} />
+										</div>
+										<div className="col-12 col-md-6">
+											<label className="geko-contact-form__label" htmlFor="contact-email">
+												{copy.contactFormEmail}
+											</label>
+											<input id="contact-email" type="email" className="form-control geko-contact-input" placeholder={copy.contactFormEmailPlaceholder} />
+										</div>
+										<div className="col-12">
+											<label className="geko-contact-form__label" htmlFor="contact-company">
+												{copy.contactFormCompany}
+											</label>
+											<input id="contact-company" type="text" className="form-control geko-contact-input" placeholder={copy.contactFormCompanyPlaceholder} />
+										</div>
+										<div className="col-12">
+											<label className="geko-contact-form__label" htmlFor="contact-message">
+												{copy.contactFormMessage}
+											</label>
+											<textarea
+												id="contact-message"
+												rows="6"
+												className="form-control geko-contact-input geko-contact-textarea"
+												placeholder={copy.contactFormMessagePlaceholder}
+											/>
+										</div>
+									</div>
+									<div className="d-flex flex-column flex-md-row align-items-md-center justify-content-between gap-3 mt-4">
+										<p className="mb-0 geko-contact-note">{copy.contactFormNote}</p>
+										<button type="submit" className="btn geko-pill-button geko-pill-button--primary">
+											{copy.contactFormButton}
+										</button>
+									</div>
+								</form>
+							</div>
 						</div>
 					</div>
 				</div>

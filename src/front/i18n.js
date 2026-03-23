@@ -10,7 +10,9 @@ export const translations = {
 		navbar: {
 			language: "Idioma",
 			about: "Acerca de nosotros",
-			contact: "Contactanos"
+			contact: "Contactanos",
+			darkMode: "Activar modo oscuro",
+			lightMode: "Activar modo claro"
 		},
 		home: {
 			agency: "Geko Marketing Agency",
@@ -39,6 +41,24 @@ export const translations = {
 			ctaDescription:
 				"Si quieres una web, una marca mas solida o una estrategia digital con mas intencion, podemos ayudarte a darle forma.",
 			ctaButton: "Contacto",
+			contactLabel: "Contactanos",
+			contactTitle: "Cuentanos que necesitas y te orientamos.",
+			contactDescription:
+				"Trabajamos con marcas, negocios y proyectos que quieren una presencia mas clara, mas fuerte y mejor pensada.",
+			contactEmailLabel: "Email",
+			contactSocialLabel: "Instagram",
+			contactReplyLabel: "Respuesta",
+			contactReplyValue: "Normalmente en 24 a 48 horas.",
+			contactFormName: "Nombre",
+			contactFormNamePlaceholder: "Tu nombre",
+			contactFormEmail: "Email",
+			contactFormEmailPlaceholder: "tu@email.com",
+			contactFormCompany: "Marca o empresa",
+			contactFormCompanyPlaceholder: "Nombre de tu proyecto",
+			contactFormMessage: "Mensaje",
+			contactFormMessagePlaceholder: "Cuentanos en que punto estas y como podemos ayudarte.",
+			contactFormNote: "Este formulario esta listo para conectar con email o backend cuando quieras.",
+			contactFormButton: "Enviar consulta",
 			services: [
 				{
 					title: "Branding",
@@ -115,7 +135,9 @@ export const translations = {
 		navbar: {
 			language: "Language",
 			about: "About us",
-			contact: "Contact us"
+			contact: "Contact us",
+			darkMode: "Enable dark mode",
+			lightMode: "Enable light mode"
 		},
 		home: {
 			agency: "Geko Marketing Agency",
@@ -144,6 +166,24 @@ export const translations = {
 			ctaDescription:
 				"If you want a website, a stronger brand or a digital strategy with more intention, we can help bring it to life.",
 			ctaButton: "Contact",
+			contactLabel: "Contact us",
+			contactTitle: "Tell us what you need and we will guide you.",
+			contactDescription:
+				"We work with brands, businesses and projects that want a clearer, stronger and better-crafted digital presence.",
+			contactEmailLabel: "Email",
+			contactSocialLabel: "Instagram",
+			contactReplyLabel: "Reply time",
+			contactReplyValue: "Usually within 24 to 48 hours.",
+			contactFormName: "Name",
+			contactFormNamePlaceholder: "Your name",
+			contactFormEmail: "Email",
+			contactFormEmailPlaceholder: "you@email.com",
+			contactFormCompany: "Brand or company",
+			contactFormCompanyPlaceholder: "Your project name",
+			contactFormMessage: "Message",
+			contactFormMessagePlaceholder: "Tell us where you are right now and how we can help.",
+			contactFormNote: "This form is ready to be connected to email or a backend whenever you want.",
+			contactFormButton: "Send inquiry",
 			services: [
 				{
 					title: "Branding",
@@ -220,7 +260,9 @@ export const translations = {
 		navbar: {
 			language: "Idioma",
 			about: "Sobre nos",
-			contact: "Contato"
+			contact: "Contato",
+			darkMode: "Ativar modo escuro",
+			lightMode: "Ativar modo claro"
 		},
 		home: {
 			agency: "Geko Marketing Agency",
@@ -249,6 +291,24 @@ export const translations = {
 			ctaDescription:
 				"Se voce quer um site, uma marca mais solida ou uma estrategia digital mais intencional, podemos ajudar a dar forma a isso.",
 			ctaButton: "Contato",
+			contactLabel: "Contato",
+			contactTitle: "Conte o que voce precisa e nos orientamos o caminho.",
+			contactDescription:
+				"Trabalhamos com marcas, negocios e projetos que querem uma presenca digital mais clara, mais forte e melhor pensada.",
+			contactEmailLabel: "Email",
+			contactSocialLabel: "Instagram",
+			contactReplyLabel: "Resposta",
+			contactReplyValue: "Normalmente em 24 a 48 horas.",
+			contactFormName: "Nome",
+			contactFormNamePlaceholder: "Seu nome",
+			contactFormEmail: "Email",
+			contactFormEmailPlaceholder: "voce@email.com",
+			contactFormCompany: "Marca ou empresa",
+			contactFormCompanyPlaceholder: "Nome do seu projeto",
+			contactFormMessage: "Mensagem",
+			contactFormMessagePlaceholder: "Conte em que momento voce esta e como podemos ajudar.",
+			contactFormNote: "Este formulario esta pronto para ser conectado a email ou backend quando quiser.",
+			contactFormButton: "Enviar consulta",
 			services: [
 				{
 					title: "Branding",
@@ -325,7 +385,9 @@ export const translations = {
 		navbar: {
 			language: "Langue",
 			about: "A propos",
-			contact: "Contact"
+			contact: "Contact",
+			darkMode: "Activer le mode sombre",
+			lightMode: "Activer le mode clair"
 		},
 		home: {
 			agency: "Geko Marketing Agency",
@@ -354,6 +416,24 @@ export const translations = {
 			ctaDescription:
 				"Si vous voulez un site web, une marque plus solide ou une strategie digitale plus intentionnelle, nous pouvons vous aider a lui donner forme.",
 			ctaButton: "Contact",
+			contactLabel: "Contact",
+			contactTitle: "Dites-nous ce dont vous avez besoin et nous vous guidons.",
+			contactDescription:
+				"Nous travaillons avec des marques, des entreprises et des projets qui veulent une presence digitale plus claire, plus forte et mieux construite.",
+			contactEmailLabel: "Email",
+			contactSocialLabel: "Instagram",
+			contactReplyLabel: "Reponse",
+			contactReplyValue: "En general sous 24 a 48 heures.",
+			contactFormName: "Nom",
+			contactFormNamePlaceholder: "Votre nom",
+			contactFormEmail: "Email",
+			contactFormEmailPlaceholder: "vous@email.com",
+			contactFormCompany: "Marque ou entreprise",
+			contactFormCompanyPlaceholder: "Nom de votre projet",
+			contactFormMessage: "Message",
+			contactFormMessagePlaceholder: "Dites-nous ou vous en etes et comment nous pouvons aider.",
+			contactFormNote: "Ce formulaire est pret a etre connecte a un email ou a un backend quand vous voulez.",
+			contactFormButton: "Envoyer la demande",
 			services: [
 				{
 					title: "Branding",
