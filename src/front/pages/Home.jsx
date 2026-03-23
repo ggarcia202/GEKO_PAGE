@@ -210,6 +210,10 @@ export const Home = () => {
 		}
 	}, [location.hash]);
 
+	const scrollToContact = () => {
+		document.getElementById("contact")?.scrollIntoView({ behavior: "smooth", block: "start" });
+	};
+
 	return (
 		<div className="page-shell">
 			<section className="geko-section geko-hero">
@@ -224,7 +228,11 @@ export const Home = () => {
 								{copy.heroDescription}
 							</p>
 							<div className="d-flex flex-wrap gap-3">
-								<button type="button" className="btn geko-pill-button geko-pill-button--primary">
+								<button
+									type="button"
+									className="btn geko-pill-button geko-pill-button--primary"
+									onClick={scrollToContact}
+								>
 									{copy.contact}
 								</button>
 								<button type="button" className="btn geko-pill-button geko-pill-button--secondary">
@@ -326,7 +334,7 @@ export const Home = () => {
 							<button
 								type="button"
 								className="btn geko-pill-button geko-pill-button--primary"
-								onClick={() => document.getElementById("contact")?.scrollIntoView({ behavior: "smooth", block: "start" })}
+								onClick={scrollToContact}
 							>
 								{copy.ctaButton}
 							</button>

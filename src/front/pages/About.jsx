@@ -1,8 +1,10 @@
 import useGlobalReducer from "../hooks/useGlobalReducer";
 import { translations } from "../i18n";
+import { useNavigate } from "react-router-dom";
 
 export const About = () => {
 	const { store } = useGlobalReducer();
+	const navigate = useNavigate();
 	const copy = translations[store.language || "es"].about;
 
 	return (
@@ -133,7 +135,11 @@ export const About = () => {
 							{copy.talkDescription}
 						</p>
 						<div className="d-flex justify-content-center">
-							<button type="button" className="btn geko-pill-button geko-pill-button--primary">
+							<button
+								type="button"
+								className="btn geko-pill-button geko-pill-button--primary"
+								onClick={() => navigate("/#contact")}
+							>
 								{copy.contact}
 							</button>
 						</div>
