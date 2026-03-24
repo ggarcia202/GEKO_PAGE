@@ -1,7 +1,7 @@
 import useGlobalReducer from "../hooks/useGlobalReducer";
 import { translations } from "../i18n";
-import Stepper, { Step } from "../components/Stepper";
-import { useEffect } from "react";
+import { Globe } from "../components/Globe";
+import { useEffect, useRef } from "react";
 import { useLocation } from "react-router-dom";
 
 const serviceStepContent = {
@@ -195,9 +195,50 @@ const serviceStepContent = {
 	]
 };
 
+const serviceVisualThemes = [
+	{
+		className: "is-brand",
+		eyebrow: "Identity System",
+		tag: "Brand",
+		preview: (
+			<div className="geko-tool-preview__brand">
+				<span></span>
+				<span></span>
+				<span></span>
+			</div>
+		)
+	},
+	{
+		className: "is-social",
+		eyebrow: "Content Engine",
+		tag: "Social",
+		preview: (
+			<div className="geko-tool-preview__social">
+				<span></span>
+				<span></span>
+				<span></span>
+			</div>
+		)
+	},
+	{
+		className: "is-ads",
+		eyebrow: "Growth Layer",
+		tag: "Ads",
+		preview: (
+			<div className="geko-tool-preview__ads">
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+			</div>
+		)
+	}
+];
+
 export const Home = () => {
 	const { store } = useGlobalReducer();
 	const location = useLocation();
+	const pageRef = useRef(null);
 	const currentLanguage = store.language || "es";
 	const copy = translations[currentLanguage].home;
 	const serviceSteps = serviceStepContent[currentLanguage];
@@ -210,64 +251,114 @@ export const Home = () => {
 		}
 	}, [location.hash]);
 
+	useEffect(() => {
+		const page = pageRef.current;
+
+		if (!page) return undefined;
+
+		const revealItems = page.querySelectorAll("[data-reveal]");
+		const scrollStages = page.querySelectorAll("[data-scroll-stage]");
+		const observer = new IntersectionObserver(
+			(entries) => {
+				entries.forEach((entry) => {
+					if (entry.isIntersecting) {
+						entry.target.classList.add("is-visible");
+					}
+				});
+			},
+			{ threshold: 0.18, rootMargin: "0px 0px -10% 0px" }
+		);
+
+		revealItems.forEach((item) => observer.observe(item));
+
+		const handleScroll = () => {
+			const hero = page.querySelector(".geko-hero");
+			const heroHeight = hero?.offsetHeight || window.innerHeight;
+			const progress = Math.min(window.scrollY / Math.max(heroHeight, 1), 1);
+			const pageHeight = Math.max(document.documentElement.scrollHeight - window.innerHeight, 1);
+			const pageProgress = Math.min(window.scrollY / pageHeight, 1);
+			const drift = Math.min(window.scrollY / 2200, 1);
+
+			page.style.setProperty("--geko-hero-progress", progress.toFixed(3));
+			page.style.setProperty("--geko-page-progress", pageProgress.toFixed(3));
+			page.style.setProperty("--geko-scroll-drift", drift.toFixed(3));
+
+			scrollStages.forEach((stage) => {
+				const rect = stage.getBoundingClientRect();
+				const viewport = window.innerHeight;
+				const total = rect.height + viewport;
+				const passed = viewport - rect.top;
+				const stageProgress = Math.min(Math.max(passed / total, 0), 1);
+				stage.style.setProperty("--stage-progress", stageProgress.toFixed(3));
+			});
+		};
+
+		handleScroll();
+		window.addEventListener("scroll", handleScroll, { passive: true });
+
+		return () => {
+			observer.disconnect();
+			window.removeEventListener("scroll", handleScroll);
+		};
+	}, []);
+
 	const scrollToContact = () => {
 		document.getElementById("contact")?.scrollIntoView({ behavior: "smooth", block: "start" });
 	};
 
 	return (
-		<div className="page-shell">
+		<div ref={pageRef} className="page-shell page-shell--interactive">
+			<div className="geko-scroll-orb geko-scroll-orb--violet" aria-hidden="true"></div>
+			<div className="geko-scroll-orb geko-scroll-orb--orange" aria-hidden="true"></div>
+			<div className="geko-scroll-orb geko-scroll-orb--pearl" aria-hidden="true"></div>
+
 			<section className="geko-section geko-hero">
+				<div className="geko-scene-objects geko-scene-objects--hero" aria-hidden="true">
+					<span className="geko-scene-object geko-scene-object--ticket"></span>
+					<span className="geko-scene-object geko-scene-object--ring"></span>
+					<span className="geko-scene-object geko-scene-object--capsule"></span>
+				</div>
 				<div className="container py-4">
 					<div className="row align-items-center g-5">
-						<div className="col-12 col-lg-7">
-							<div className="geko-chip mb-4">{copy.agency}</div>
-							<h1 className="geko-title" style={{ maxWidth: "11ch" }}>
-								{copy.heroTitle}
-							</h1>
-							<p className="geko-lead mb-4" style={{ maxWidth: "40rem" }}>
-								{copy.heroDescription}
-							</p>
-							<div className="d-flex flex-wrap gap-3">
-								<button
-									type="button"
-									className="btn geko-pill-button geko-pill-button--primary"
-									onClick={scrollToContact}
-								>
-									{copy.contact}
-								</button>
-								<button type="button" className="btn geko-pill-button geko-pill-button--secondary">
-									{copy.viewServices}
-								</button>
+						<div className="col-12 col-lg-7" data-reveal="left">
+							<div className="geko-hero-copy-card geko-scroll-panel">
+								<div className="geko-brand-signature" aria-hidden="true">
+									<span className="geko-brand-signature__eye"></span>
+									<span className="geko-brand-signature__tail"></span>
+								</div>
+								<div className="geko-chip mb-4">{copy.agency}</div>
+								<h1 className="geko-title" style={{ maxWidth: "11ch" }}>
+									{copy.heroTitle}
+								</h1>
+								<p className="geko-lead mb-4" style={{ maxWidth: "40rem" }}>
+									{copy.heroDescription}
+								</p>
+								<div className="geko-hero-copy-card__actions d-flex flex-wrap gap-3">
+									<button
+										type="button"
+										className="btn geko-pill-button geko-pill-button--primary"
+										onClick={scrollToContact}
+									>
+										{copy.contact}
+									</button>
+									<button type="button" className="btn geko-pill-button geko-pill-button--secondary">
+										{copy.viewServices}
+									</button>
+								</div>
 							</div>
 						</div>
 
-						<div className="col-12 col-lg-5">
-							<div className="geko-dark-card">
+						<div className="col-12 col-lg-5" data-reveal="right">
+							<div className="geko-hero-globe-card geko-scroll-panel">
+								<div className="geko-globe-card__mark" aria-hidden="true">
+									<span></span>
+									<span></span>
+									<span></span>
+								</div>
 								<div className="geko-chip mb-3" style={{ background: "var(--geko-dark-chip-bg)", color: "var(--geko-dark-chip-text)" }}>
 									{copy.digitalPresence}
 								</div>
-								<h2 className="geko-subtitle mb-3" style={{ color: "var(--geko-dark-title)" }}>
-									{copy.strategyTitle}
-								</h2>
-								<p className="mb-4" style={{ color: "var(--geko-dark-copy)", lineHeight: "1.8" }}>
-									{copy.strategyDescription}
-								</p>
-								<div className="geko-metric-grid">
-									<div className="geko-metric">
-										<div className="geko-metric-value">01</div>
-										<p className="mb-0 small" style={{ color: "var(--geko-metric-copy-color)" }}>
-											Brand systems with clear direction.
-										</p>
-									</div>
-									<div className="geko-metric">
-										<div className="geko-metric-value" style={{ color: "var(--geko-accent-strong)" }}>
-											02
-										</div>
-										<p className="mb-0 small" style={{ color: "var(--geko-metric-copy-color)" }}>
-											Content designed to attract the right audience.
-										</p>
-									</div>
-								</div>
+								<Globe />
 							</div>
 						</div>
 					</div>
@@ -275,52 +366,89 @@ export const Home = () => {
 			</section>
 
 			<section className="geko-section">
+				<div className="geko-scene-objects geko-scene-objects--services" aria-hidden="true">
+					<span className="geko-scene-object geko-scene-object--diamond"></span>
+					<span className="geko-scene-object geko-scene-object--panel"></span>
+					<span className="geko-scene-object geko-scene-object--dot-grid"></span>
+				</div>
 				<div className="container">
 					<div className="row align-items-end mb-4 g-4">
-						<div className="col-12 col-lg-7">
+						<div className="col-12 col-lg-7" data-reveal="up">
 							<div className="geko-chip mb-3">{copy.servicesLabel}</div>
 							<h2 className="geko-subtitle mb-0">{copy.servicesTitle}</h2>
 						</div>
-						<div className="col-12 col-lg-5">
+						<div className="col-12 col-lg-5" data-reveal="up" style={{ "--reveal-delay": "120ms" }}>
 							<p className="geko-lead mb-0">{copy.servicesDescription}</p>
 						</div>
 					</div>
 
-					<Stepper
-						backButtonText={currentLanguage === "es" ? "Atras" : currentLanguage === "pt" ? "Voltar" : currentLanguage === "fr" ? "Retour" : "Back"}
-						nextButtonText={currentLanguage === "es" ? "Continuar" : currentLanguage === "pt" ? "Continuar" : currentLanguage === "fr" ? "Continuer" : "Continue"}
-					>
-						{serviceSteps.map((step) => (
-							<Step key={step.title}>
-								<div className="geko-service-step">
-									<div className="geko-service-step__eyebrow">{step.eyebrow}</div>
-									<div className="geko-service-step__title">{step.title}</div>
-									<p className="geko-service-step__description mb-0">{step.description}</p>
-									<div className="geko-service-step__grid">
-										<div className="geko-service-step__panel">
-											<h4>{step.listTitle}</h4>
-											<ul className="geko-service-step__list">
-												{step.items.map((item) => (
-													<li key={item}>{item}</li>
-												))}
-											</ul>
-										</div>
-										<div className="geko-service-step__panel geko-service-step__metric">
-											<h4>{step.metricTitle}</h4>
-											<div className="geko-service-step__metric-value">{step.metricValue}</div>
-											<p className="geko-service-step__metric-copy mb-0">{step.metricCopy}</p>
+					<div className="geko-services-premium-bar" data-reveal="up" style={{ "--reveal-delay": "100ms" }}>
+						<div className="geko-services-premium-bar__label">Geko Creative System</div>
+						<div className="geko-services-premium-bar__chips">
+							<span>Visual Identity</span>
+							<span>Content Systems</span>
+							<span>Campaign Motion</span>
+						</div>
+					</div>
+
+					<div className="geko-scroll-showcase" data-scroll-stage data-reveal="up" style={{ "--reveal-delay": "120ms" }}>
+						<div className="geko-scroll-showcase__copy">
+							<div className="geko-scroll-showcase__intro">
+								<div className="geko-scroll-showcase__intro-mark" aria-hidden="true"></div>
+								<p>
+									Geko Marketing trabaja cada capa como un sistema vivo: identidad, contenido y
+									campanas moviendose con una misma direccion visual.
+								</p>
+							</div>
+							{serviceSteps.map((step, index) => (
+								<article key={step.title} className="geko-scroll-showcase__item">
+									<div className="geko-scroll-showcase__item-index">{step.metricValue}</div>
+									<div>
+										<p className="geko-scroll-showcase__item-kicker">{serviceVisualThemes[index].eyebrow}</p>
+										<h3 className="geko-scroll-showcase__item-title">{step.title}</h3>
+										<p className="geko-scroll-showcase__item-copy">{step.metricCopy}</p>
+									</div>
+								</article>
+							))}
+						</div>
+						<div className="geko-scroll-showcase__visual">
+							<div className="geko-scroll-showcase__stage">
+								<div className="geko-scroll-showcase__chrome">
+									<span></span>
+									<span></span>
+									<span></span>
+								</div>
+								<div className="geko-scroll-showcase__floor"></div>
+								{serviceSteps.map((step, index) => (
+									<div
+										key={step.title}
+										className={`geko-scroll-showcase__panel ${serviceVisualThemes[index].className}`}
+									>
+										<div className="geko-scroll-showcase__panel-glow"></div>
+										<div className="geko-scroll-showcase__panel-preview">{serviceVisualThemes[index].preview}</div>
+										<div className="geko-scroll-showcase__panel-body">
+											<span>{serviceVisualThemes[index].tag}</span>
+											<strong>{step.title}</strong>
 										</div>
 									</div>
-								</div>
-							</Step>
-						))}
-					</Stepper>
+								))}
+							</div>
+						</div>
+					</div>
+
 				</div>
 			</section>
 
 			<section className="geko-section">
+				<div className="geko-scene-objects geko-scene-objects--cta" aria-hidden="true">
+					<span className="geko-scene-object geko-scene-object--wave"></span>
+					<span className="geko-scene-object geko-scene-object--coin"></span>
+				</div>
 				<div className="container">
-					<div className="geko-dark-card text-center">
+					<div className="geko-dark-card text-center geko-scroll-panel" data-reveal="up">
+						<div className="geko-minimal-track geko-minimal-track--cta" aria-hidden="true">
+							<span></span>
+						</div>
 						<div className="geko-chip mb-3 mx-auto" style={{ width: "fit-content", background: "var(--geko-dark-chip-bg)", color: "var(--geko-dark-chip-text)" }}>
 							{copy.startLabel}
 						</div>
@@ -344,10 +472,14 @@ export const Home = () => {
 			</section>
 
 			<section id="contact" className="geko-section">
+				<div className="geko-scene-objects geko-scene-objects--contact" aria-hidden="true">
+					<span className="geko-scene-object geko-scene-object--frame"></span>
+					<span className="geko-scene-object geko-scene-object--signal"></span>
+				</div>
 				<div className="container">
 					<div className="row align-items-stretch g-4">
-						<div className="col-12 col-lg-5">
-							<div className="geko-dark-card h-100">
+						<div className="col-12 col-lg-5" data-reveal="left">
+							<div className="geko-dark-card h-100 geko-scroll-panel">
 								<div className="geko-chip mb-3" style={{ background: "var(--geko-dark-chip-bg)", color: "var(--geko-dark-chip-text)" }}>
 									{copy.contactLabel}
 								</div>
@@ -376,8 +508,8 @@ export const Home = () => {
 							</div>
 						</div>
 
-						<div className="col-12 col-lg-7">
-							<div className="geko-glass-card h-100">
+						<div className="col-12 col-lg-7" data-reveal="right" style={{ "--reveal-delay": "120ms" }}>
+							<div className="geko-glass-card h-100 geko-scroll-panel">
 								<form className="geko-contact-form" onSubmit={(event) => event.preventDefault()}>
 									<div className="row g-3">
 										<div className="col-12 col-md-6">
