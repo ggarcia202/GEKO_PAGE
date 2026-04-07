@@ -3,6 +3,7 @@ import { Outlet } from "react-router-dom"
 import ScrollToTop from "../components/ScrollToTop"
 import { Navbar } from "../components/Navbar"
 import { Footer } from "../components/Footer"
+import { AIChatWidget } from "../components/AIChatWidget"
 import useGlobalReducer from "../hooks/useGlobalReducer"
 
 // Base component that maintains the navbar and footer throughout the page and the scroll to top functionality.
@@ -23,6 +24,7 @@ export const Layout = () => {
                     <Outlet />
                 </main>
                 <Footer />
+                <AIChatWidget />
             </div>
         </ScrollToTop>
     )

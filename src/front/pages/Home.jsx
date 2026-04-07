@@ -1,6 +1,8 @@
 import useGlobalReducer from "../hooks/useGlobalReducer";
 import { translations } from "../i18n";
 import { Globe } from "../components/Globe";
+import { ParticlesLayer } from "../components/ParticlesLayer";
+import { ProjectsShowcase } from "../components/ProjectsShowcase";
 import { useEffect, useRef } from "react";
 import { useLocation } from "react-router-dom";
 
@@ -308,6 +310,7 @@ export const Home = () => {
 
 	return (
 		<div ref={pageRef} className="page-shell page-shell--interactive">
+			<ParticlesLayer />
 			<div className="geko-scroll-orb geko-scroll-orb--violet" aria-hidden="true"></div>
 			<div className="geko-scroll-orb geko-scroll-orb--orange" aria-hidden="true"></div>
 			<div className="geko-scroll-orb geko-scroll-orb--pearl" aria-hidden="true"></div>
@@ -436,6 +439,16 @@ export const Home = () => {
 						</div>
 					</div>
 
+				</div>
+			</section>
+
+			<section className="geko-section">
+				<div className="geko-scene-objects geko-scene-objects--cta" aria-hidden="true">
+					<span className="geko-scene-object geko-scene-object--wave"></span>
+					<span className="geko-scene-object geko-scene-object--coin"></span>
+				</div>
+				<div className="container">
+					<ProjectsShowcase preview />
 				</div>
 			</section>
 

@@ -10,6 +10,7 @@ export const translations = {
 		navbar: {
 			language: "Idioma",
 			about: "Acerca de nosotros",
+			projects: "Proyectos",
 			contact: "Contactanos",
 			darkMode: "Activar modo oscuro",
 			lightMode: "Activar modo claro"
@@ -126,6 +127,21 @@ export const translations = {
 				}
 			]
 		},
+		projects: {
+			heroLabel: "Portfolio",
+			heroTitle: "Proyectos pensados para verse bien y rendir mejor.",
+			heroDescription:
+				"Aqui reunimos una muestra de trabajos recientes para ensenar como trasladamos estrategia, identidad y accion a resultados mas claros para cada marca.",
+			sideLabel: "Enfoque",
+			sideTitle: "Cada proyecto conecta forma y objetivo.",
+			sideDescription:
+				"No buscamos piezas aisladas. Nos interesa construir sistemas visuales y comerciales que se sientan coherentes, diferenciales y utiles para crecer.",
+			ctaLabel: "Hablemos",
+			ctaTitle: "Si quieres que tu marca sea el siguiente proyecto, lo construimos contigo.",
+			ctaDescription:
+				"Podemos ayudarte a replantear tu identidad, ordenar tu contenido y dar mas fuerza a tu presencia digital con una direccion clara.",
+			ctaButton: "Contacto"
+		},
 		single: {
 			titlePrefix: "Tarea",
 			backHome: "Volver al inicio"
@@ -135,6 +151,7 @@ export const translations = {
 		navbar: {
 			language: "Language",
 			about: "About us",
+			projects: "Projects",
 			contact: "Contact us",
 			darkMode: "Enable dark mode",
 			lightMode: "Enable light mode"
@@ -251,6 +268,21 @@ export const translations = {
 				}
 			]
 		},
+		projects: {
+			heroLabel: "Portfolio",
+			heroTitle: "Projects designed to look sharp and perform better.",
+			heroDescription:
+				"Here we gather a selection of recent work to show how we translate strategy, identity and action into clearer brand results.",
+			sideLabel: "Approach",
+			sideTitle: "Each project connects form and purpose.",
+			sideDescription:
+				"We are not interested in isolated pieces. We build visual and commercial systems that feel coherent, distinctive and useful for growth.",
+			ctaLabel: "Let's talk",
+			ctaTitle: "If you want your brand to be the next project, we can build it together.",
+			ctaDescription:
+				"We can help rethink your identity, organize your content and strengthen your digital presence with a clearer direction.",
+			ctaButton: "Contact"
+		},
 		single: {
 			titlePrefix: "Task",
 			backHome: "Back home"
@@ -260,6 +292,7 @@ export const translations = {
 		navbar: {
 			language: "Idioma",
 			about: "Sobre nos",
+			projects: "Projetos",
 			contact: "Contato",
 			darkMode: "Ativar modo escuro",
 			lightMode: "Ativar modo claro"
@@ -376,6 +409,21 @@ export const translations = {
 				}
 			]
 		},
+		projects: {
+			heroLabel: "Portfolio",
+			heroTitle: "Projetos pensados para parecer melhor e performar mais.",
+			heroDescription:
+				"Aqui reunimos uma selecao de trabalhos recentes para mostrar como traduzimos estrategia, identidade e acao em resultados mais claros para cada marca.",
+			sideLabel: "Abordagem",
+			sideTitle: "Cada projeto conecta forma e objetivo.",
+			sideDescription:
+				"Nao buscamos pecas isoladas. Construimos sistemas visuais e comerciais que parecam coerentes, diferenciais e uteis para crescer.",
+			ctaLabel: "Vamos conversar",
+			ctaTitle: "Se voce quer que sua marca seja o proximo projeto, podemos construir isso juntos.",
+			ctaDescription:
+				"Podemos ajudar a repensar sua identidade, organizar seu conteudo e dar mais forca a sua presenca digital com uma direcao mais clara.",
+			ctaButton: "Contato"
+		},
 		single: {
 			titlePrefix: "Tarefa",
 			backHome: "Voltar ao inicio"
@@ -385,6 +433,7 @@ export const translations = {
 		navbar: {
 			language: "Langue",
 			about: "A propos",
+			projects: "Projets",
 			contact: "Contact",
 			darkMode: "Activer le mode sombre",
 			lightMode: "Activer le mode clair"
@@ -500,6 +549,21 @@ export const translations = {
 					description: "Nous recherchons des resultats qui peuvent durer dans le temps, avec des decisions qui ameliorent la perception, la clarte et la conversion."
 				}
 			]
+		},
+		projects: {
+			heroLabel: "Portfolio",
+			heroTitle: "Des projets penses pour mieux paraitre et mieux performer.",
+			heroDescription:
+				"Nous reunissons ici une selection de travaux recents pour montrer comment nous traduisons strategie, identite et action en resultats plus clairs pour chaque marque.",
+			sideLabel: "Approche",
+			sideTitle: "Chaque projet relie forme et intention.",
+			sideDescription:
+				"Nous ne cherchons pas des pieces isolees. Nous construisons des systemes visuels et commerciaux coherents, differenciants et utiles a la croissance.",
+			ctaLabel: "Parlons-en",
+			ctaTitle: "Si vous voulez que votre marque soit le prochain projet, nous pouvons le construire ensemble.",
+			ctaDescription:
+				"Nous pouvons repenser votre identite, structurer votre contenu et renforcer votre presence digitale avec une direction plus claire.",
+			ctaButton: "Contact"
 		},
 		single: {
 			titlePrefix: "Tache",

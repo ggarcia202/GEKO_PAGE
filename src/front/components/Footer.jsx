@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 const socialLinks = [
 	{
 		name: "Instagram",
-		href: "#",
+		href: "https://www.instagram.com/geko.marketing/",
 		icon: (
 			<svg viewBox="0 0 24 24" aria-hidden="true">
 				<path
@@ -27,12 +27,24 @@ const socialLinks = [
 	},
 	{
 		name: "LinkedIn",
-		href: "#",
+		href: "https://www.linkedin.com/company/geko-marketing/posts/?feedView=all",
 		icon: (
 			<svg viewBox="0 0 24 24" aria-hidden="true">
 				<path
 					fill="currentColor"
 					d="M6.94 8.5H3.56V21h3.38V8.5ZM5.25 3A2.01 2.01 0 1 0 7.26 5 2 2 0 0 0 5.25 3Zm15.19 10.22c0-3.05-1.63-4.72-4.27-4.72a3.73 3.73 0 0 0-3.36 1.85V8.5H9.44c.04 1.22 0 12.5 0 12.5h3.37v-6.98c0-.37.03-.74.14-1a2.2 2.2 0 0 1 2.06-1.47c1.45 0 2.03 1.1 2.03 2.72V21h3.4Z"
+				/>
+			</svg>
+		)
+	},
+	{
+		name: "TikTok",
+		href: "https://www.tiktok.com/@geko.marketing",
+		icon: (
+			<svg viewBox="0 0 24 24" aria-hidden="true">
+				<path
+					fill="currentColor"
+					d="M16.76 3c.2 1.7 1.18 3.33 2.63 4.3.86.58 1.83.9 2.61.99v3.16a9.08 9.08 0 0 1-4.11-1.24v5.13c0 4.23-3.2 7.16-7.13 7.16A6.74 6.74 0 0 1 4 15.76c0-3.73 3-6.76 6.76-6.76.3 0 .6.03.88.08v3.24a3.7 3.7 0 0 0-.88-.11 3.56 3.56 0 1 0 3.56 3.55V3h2.44Z"
 				/>
 			</svg>
 		)
