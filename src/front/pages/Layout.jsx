@@ -10,11 +10,13 @@ import useGlobalReducer from "../hooks/useGlobalReducer"
 export const Layout = () => {
     const { store } = useGlobalReducer()
     const currentTheme = store.theme || "light"
+    const currentLanguage = store.language || "es"
 
     useEffect(() => {
         document.documentElement.dataset.theme = currentTheme
         document.body.dataset.theme = currentTheme
-    }, [currentTheme])
+        document.documentElement.lang = currentLanguage
+    }, [currentTheme, currentLanguage])
 
     return (
         <ScrollToTop>

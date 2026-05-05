@@ -237,6 +237,33 @@ const serviceVisualThemes = [
 	}
 ];
 
+const serviceBarContent = {
+	es: {
+		label: "Geko Creative System",
+		chips: ["Identidad visual", "Sistemas de contenido", "Movimiento de campanas"],
+		intro:
+			"Geko Marketing trabaja cada capa como un sistema vivo: identidad, contenido y campanas moviendose con una misma direccion visual."
+	},
+	en: {
+		label: "Geko Creative System",
+		chips: ["Visual Identity", "Content Systems", "Campaign Motion"],
+		intro:
+			"Geko Marketing treats every layer as a living system: identity, content and campaigns moving with one shared visual direction."
+	},
+	pt: {
+		label: "Geko Creative System",
+		chips: ["Identidade visual", "Sistemas de conteudo", "Movimento de campanhas"],
+		intro:
+			"A Geko Marketing trabalha cada camada como um sistema vivo: identidade, conteudo e campanhas movendo-se com uma mesma direcao visual."
+	},
+	fr: {
+		label: "Geko Creative System",
+		chips: ["Identite visuelle", "Systemes de contenu", "Mouvement de campagnes"],
+		intro:
+			"Geko Marketing traite chaque couche comme un systeme vivant: identite, contenu et campagnes avances dans une meme direction visuelle."
+	}
+};
+
 export const Home = () => {
 	const { store } = useGlobalReducer();
 	const location = useLocation();
@@ -244,6 +271,7 @@ export const Home = () => {
 	const currentLanguage = store.language || "es";
 	const copy = translations[currentLanguage].home;
 	const serviceSteps = serviceStepContent[currentLanguage];
+	const serviceBarCopy = serviceBarContent[currentLanguage] || serviceBarContent.es;
 
 	useEffect(() => {
 		if (location.hash === "#contact") {
@@ -386,11 +414,11 @@ export const Home = () => {
 					</div>
 
 					<div className="geko-services-premium-bar" data-reveal="up" style={{ "--reveal-delay": "100ms" }}>
-						<div className="geko-services-premium-bar__label">Geko Creative System</div>
+						<div className="geko-services-premium-bar__label">{serviceBarCopy.label}</div>
 						<div className="geko-services-premium-bar__chips">
-							<span>Visual Identity</span>
-							<span>Content Systems</span>
-							<span>Campaign Motion</span>
+							{serviceBarCopy.chips.map((chip) => (
+								<span key={chip}>{chip}</span>
+							))}
 						</div>
 					</div>
 
@@ -398,10 +426,7 @@ export const Home = () => {
 						<div className="geko-scroll-showcase__copy">
 							<div className="geko-scroll-showcase__intro">
 								<div className="geko-scroll-showcase__intro-mark" aria-hidden="true"></div>
-								<p>
-									Geko Marketing trabaja cada capa como un sistema vivo: identidad, contenido y
-									campanas moviendose con una misma direccion visual.
-								</p>
+								<p>{serviceBarCopy.intro}</p>
 							</div>
 							{serviceSteps.map((step, index) => (
 								<article key={step.title} className="geko-scroll-showcase__item">

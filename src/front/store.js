@@ -3,10 +3,15 @@ const getInitialTheme = () => {
   return window.localStorage.getItem("geko-theme") || "light";
 }
 
+const getInitialLanguage = () => {
+  if (typeof window === "undefined") return "es";
+  return window.localStorage.getItem("geko-language") || "es";
+}
+
 export const initialStore=()=>{
   return{
     message: null,
-    language: "es",
+    language: getInitialLanguage(),
     theme: getInitialTheme(),
     todos: [
       {
@@ -40,6 +45,9 @@ export default function storeReducer(store, action = {}) {
         todos: store.todos.map((todo) => (todo.id === id ? { ...todo, background: color } : todo))
       };
     case "set_language":
+      if (typeof window !== "undefined") {
+        window.localStorage.setItem("geko-language", action.payload);
+      }
       return {
         ...store,
         language: action.payload

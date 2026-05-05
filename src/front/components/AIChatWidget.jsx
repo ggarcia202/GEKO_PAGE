@@ -28,6 +28,30 @@ const uiCopy = {
 		welcome:
 			"Hi, I'm Geko's assistant. I can help with services, marketing trends, content ideas and website improvements.",
 		suggestionsTitle: "You can ask me about:"
+	},
+	pt: {
+		button: "IA",
+		title: "Assistente Geko",
+		subtitle: "Branding, social media, paid ads e melhorias para o seu site.",
+		inputPlaceholder: "Escreva sua pergunta...",
+		send: "Enviar",
+		close: "Fechar",
+		thinking: "Escrevendo...",
+		welcome:
+			"Ola, sou o assistente da Geko. Posso ajudar com servicos, tendencias de marketing, ideias de conteudo e melhorias para o site.",
+		suggestionsTitle: "Voce pode perguntar sobre:"
+	},
+	fr: {
+		button: "IA",
+		title: "Assistant Geko",
+		subtitle: "Branding, social media, paid ads et ameliorations pour votre site.",
+		inputPlaceholder: "Ecrivez votre question...",
+		send: "Envoyer",
+		close: "Fermer",
+		thinking: "En train d'ecrire...",
+		welcome:
+			"Bonjour, je suis l'assistant Geko. Je peux vous aider avec les services, les tendances marketing, les idees de contenu et les ameliorations du site.",
+		suggestionsTitle: "Vous pouvez demander:"
 	}
 };
 
@@ -47,17 +71,9 @@ export const AIChatWidget = () => {
 	]);
 	const abortRef = useRef(null);
 	const bodyRef = useRef(null);
+	const languageMenuRef = useRef(null);
 	const currentOption =
 		languageOptions.find((option) => option.code === currentLanguage) || languageOptions[0];
-
-	const handleLanguageChange = (languageCode) => {
-		dispatch({ type: "set_language", payload: languageCode });
-		setIsLanguageOpen(false);
-	};
-
-	const handleThemeToggle = () => {
-		dispatch({ type: "set_theme", payload: currentTheme === "dark" ? "light" : "dark" });
-	};
 
 	useEffect(() => {
 		setMessages([{ role: "assistant", content: copy.welcome }]);
@@ -85,10 +101,26 @@ export const AIChatWidget = () => {
 		};
 	}, []);
 
+	useEffect(() => {
+		const handleOutsideClick = (event) => {
+			if (!languageMenuRef.current?.contains(event.target)) {
+				setIsLanguageOpen(false);
+			}
+		};
+
+		document.addEventListener("mousedown", handleOutsideClick);
+		return () => document.removeEventListener("mousedown", handleOutsideClick);
+	}, []);
+
 	const history = useMemo(
 		() => messages.map((message) => ({ role: message.role, content: message.content })),
 		[messages]
 	);
+
+	const handleLanguageChange = (languageCode) => {
+		dispatch({ type: "set_language", payload: languageCode });
+		setIsLanguageOpen(false);
+	};
 
 	const sendMessage = async (prefilledMessage) => {
 		const nextMessage = (prefilledMessage ?? inputValue).trim();
@@ -205,7 +237,7 @@ export const AIChatWidget = () => {
 	return (
 		<>
 			<div className={`geko-floating-tools ${isOpen ? "is-chat-open" : ""}`}>
-				<div className="position-relative">
+				<div className="geko-floating-language-wrap" ref={languageMenuRef}>
 					<button
 						type="button"
 						className={`btn geko-floating-bubble geko-floating-bubble--language ${isLanguageOpen ? "is-open" : ""}`}
@@ -213,6 +245,7 @@ export const AIChatWidget = () => {
 						aria-haspopup="true"
 						aria-expanded={isLanguageOpen}
 						aria-label={navbarCopy.language}
+						title={navbarCopy.language}
 					>
 						<span className="geko-floating-bubble__glow" aria-hidden="true"></span>
 						<span className="geko-floating-bubble__label">{currentOption.shortLabel}</span>
@@ -227,9 +260,13 @@ export const AIChatWidget = () => {
 									className={`btn w-100 text-start rounded-3 px-3 py-2 geko-language-option ${
 										option.code === currentLanguage ? "is-active" : ""
 									}`}
+									onMouseDown={(event) => {
+										event.preventDefault();
+										handleLanguageChange(option.code);
+									}}
 									onClick={() => handleLanguageChange(option.code)}
 								>
-									{option.shortLabel}
+									{option.label}
 								</button>
 							))}
 						</div>
@@ -239,7 +276,12 @@ export const AIChatWidget = () => {
 				<button
 					type="button"
 					className="btn geko-floating-bubble geko-floating-bubble--theme"
-					onClick={handleThemeToggle}
+					onClick={() =>
+						dispatch({
+							type: "set_theme",
+							payload: currentTheme === "dark" ? "light" : "dark"
+						})
+					}
 					aria-label={currentTheme === "dark" ? navbarCopy.lightMode : navbarCopy.darkMode}
 					title={currentTheme === "dark" ? navbarCopy.lightMode : navbarCopy.darkMode}
 				>
